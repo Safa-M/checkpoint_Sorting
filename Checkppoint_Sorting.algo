@@ -1,23 +1,22 @@
-PROCEDURE sort(VAR arr : ARRAY_OF INTEGER, VAR NC : INTEGER)
+PROCEDURE sort(VAR arr : ARRAY_OF INTEGER)
 VAR
    i,j,n,y,NC : INTEGER;
 BEGIN
    n := arr.length;
-   FOR i FROM 0 TO n- 1 DO
-       FOR j  FROM 0 TO n-i-1 DO
-           IF (NC > arr[j]) THEN
-               y:=arr[j];
-               arr[j]:=NC;
-               arr[j-1]:=y;
-           END_IF
-       END_FOR
+   FOR i FROM 1 TO (n-1) DO
+        NC:=arr[i];
+        j:=i-1;
+        WHILE ((j>=0) and (NC > arr[j])) DO
+            arr[j+1]:=arr[j];
+            j:=j-1;
+        END_WHILE
+        arr[j+1]:=NC;
    END_FOR
 END
 
 !ALGORITHM sorting
 VAR
     arr : ARRAY_OF INTEGER;
-    NC : INTEGER;
 BEGIN
-    sort(arr,NC)
+    sort(arr);
 END
